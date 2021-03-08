@@ -114,10 +114,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                 if(game?.isGameWon() == true){
                     val toast = Toast.makeText(this, "Niveau Gennemført!", Toast.LENGTH_SHORT)
-                    toast.setGravity(Gravity.CENTER, 0, 0)
+//                    toast.setGravity(Gravity.CENTER, 0, 0)
                     toast.show()
                 }
-                
+
             } else if (counter == 0) {
                 game?.running = false
                 gameIsOver("You Lose")
