@@ -24,6 +24,7 @@ class Game(private var context: Context,view: TextView) {
         var pacx: Int = 0
         var pacy: Int = 0
         var running = false
+        var counter : Int = 60
 
         var direction: Int = 0
 
@@ -74,6 +75,8 @@ class Game(private var context: Context,view: TextView) {
 
     fun newGame() {
         pacx = 50
+
+        counter = 60
         pacy = 400 //just some starting coordinates - you can change this.
         coins.clear()
         initializeGoldcoins()

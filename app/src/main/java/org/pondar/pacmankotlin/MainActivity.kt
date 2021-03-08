@@ -114,7 +114,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             } else if (counter == 0) {
                 game?.running = false
                 gameOver();
-                counter = 60
             }
         }
     }
