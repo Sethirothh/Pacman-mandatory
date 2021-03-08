@@ -114,8 +114,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                 if(game?.isGameWon() == true){
                     val toast = Toast.makeText(this, "Niveau Gennemført!", Toast.LENGTH_SHORT)
-//                    toast.setGravity(Gravity.CENTER, 0, 0)
+                    //                    toast.setGravity(Gravity.CENTER, 0, 0)
                     toast.show()
+                    game?.running = false
                 }
 
             } else if (counter == 0) {
