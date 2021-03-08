@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
     private val gameTimerTick = Runnable {
         if (running) {
-            counter++
+            counter--
             //update the counter - notice this is NOT seconds in this example
             //you need TWO counters - one for the timer count down that will
             // run every second and one for the pacman which need to run
