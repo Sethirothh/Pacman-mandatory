@@ -61,13 +61,13 @@
     <org.pondar.pacmankotlin.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="605dp">
+        android:layout_height="550dp">
 
     </org.pondar.pacmankotlin.GameView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="63dp"
         android:orientation="horizontal">
 
         <Button

@@ -89,6 +89,15 @@ class Game(private var context: Context,view: TextView) {
     }
 
 
+    fun isGameWon(): Boolean{
+        for (coin in coins){
+            if (!coin.taken){
+                return false
+            }
+        }
+        return true
+    }
+
     fun setSize(h: Int, w: Int) {
         this.h = h
         this.w = w

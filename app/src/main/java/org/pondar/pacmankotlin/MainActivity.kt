@@ -2,6 +2,7 @@ package org.pondar.pacmankotlin
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -97,6 +98,36 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             timerView.text = getString(R.string.timer_value,counter)
 
 
+            if (game?.direction==1)
+            {
+                game?.movePacmanUp(5)
+            }
+            else if (game?.direction==2)
+            {
+                game?.movePacmanDown(5)
+            }
+            else if (game?.direction==3)
+            {
+                game?.movePacmanRight(5)
+            }
+            else if (game?.direction==4)
+            {
+                game?.movePacmanLeft(5)
+            }
+            if (counter <= 0){
+                game?.direction = 0
+                game?.running = false
+            }
+            if(game?.isGameWon() == true){
+                val toast = Toast.makeText(this, "Level Completed!", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER, 0, 0)
+                toast.show()
+            }
+            if (game?.running == false){
+                val toast = Toast.makeText(this, "Game Over", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER, 0, 0)
+                toast.show()
+            }
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
