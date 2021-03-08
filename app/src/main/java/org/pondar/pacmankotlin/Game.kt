@@ -88,6 +88,7 @@ class Game(private var context: Context,view: TextView) {
         running = true
     }
 
+
     fun setSize(h: Int, w: Int) {
         this.h = h
         this.w = w

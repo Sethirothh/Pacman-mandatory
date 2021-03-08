@@ -6,17 +6,33 @@
     tools:context="org.pondar.pacmankotlin.MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/pauseButton"
+            android:id="@+id/stopButton"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
+            android:layout_width="124dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#6A0000"
             android:text="@string/pause" />
+
+        <Button
+            android:id="@+id/startButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#F44336"
+            android:text="@string/start" />
+
+        <Button
+            android:id="@+id/resetButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#6a0000"
+            android:text="@string/next_level" />
 
     </LinearLayout>
 
@@ -45,13 +61,13 @@
     <org.pondar.pacmankotlin.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="627dp">
+        android:layout_height="605dp">
 
     </org.pondar.pacmankotlin.GameView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <Button
@@ -66,7 +82,7 @@
             android:id="@+id/moveUp"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:backgroundTint="#B8A43F"
             android:text="@string/move_up" />
 
@@ -74,7 +90,7 @@
             android:id="@+id/moveDown"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="#B8A43F"
             android:text="@string/move_down" />

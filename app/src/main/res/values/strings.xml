@@ -4,7 +4,9 @@
     <string name="points">Point:</string>
     <string name="action_settings">Indstillinger</string>
     <string name="pause">Pause</string>
-    <string name="timer_value">Tids-værdi:</string>
+    <string name="start">Fortsæt</string>
+    <string name="next_level">Næste Niveau</string>
+    <string name="timer_value">Tids-værdi: %1$d</string>
     <string name="timer">Tid</string>
     <string name="newgame">Nyt Spil</string>
         <!-- Controls -->

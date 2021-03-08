@@ -1,23 +1,25 @@
 package org.pondar.pacmankotlin
 
 import android.content.pm.ActivityInfo
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.View.OnClickListener
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnClickListener {
 
     //reference to the game class.
     private var game: Game? = null
 
     private var myTimer: Timer = Timer()
-    private var gameTimer: Timer = Timer()
+//    private var gameTimer: Timer = Timer()
     private var counter : Int = 60
-
+    private var running = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,10 @@ class MainActivity : AppCompatActivity() {
         //makes sure it always runs in portrait mode
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_main)
+
+        startButton.setOnClickListener(this)
+        stopButton.setOnClickListener(this)
+        resetButton.setOnClickListener(this)
 
         game = Game(this,pointsView)
 
@@ -35,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         //make a new timer
         game?.running = true //should the game be running?
+
         //We will call the timer 5 times each second
         myTimer.schedule(object : TimerTask() {
             override fun run() {
@@ -42,14 +49,6 @@ class MainActivity : AppCompatActivity() {
             }
         }, 0, 17) //0 indicates we start now, 200
         //is the number of miliseconds between each call
-
-        //timer
-        gameTimer.schedule(object : TimerTask() {
-            override fun run() {
-                timerValue()
-            }
-        },0,1000)
-
 
         // movement buttons
         moveRight.setOnClickListener {
@@ -70,29 +69,34 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun timerValue(){
-        this.runOnUiThread(timerSecond)
+    private fun timerMethod() {
+        //This method is called directly by the timer
+        //and runs in the same thread as the timer.
+
+        //we could do updates here TO GAME LOGIC,
+        // but not updates TO ACTUAL UI
+
+        // gameView.move(20)  // BIG NO NO TO DO THIS - WILL CRASH ON OLDER DEVICES!!!!
+
+
+        //We call the method that will work with the UI
+        //through the runOnUiThread method.
+        this.runOnUiThread(timerTick)
+
     }
 
-    private  val timerSecond = Runnable {
-        timerView.text = "${getString(R.string.timer_value)} $counter secs"
-        if (game?.running!!){
-            if (game?.direction == 1) {
-                counter--
-                timerView.text = "${getString(R.string.timer_value)} $counter secs"
-            }
-            if (game?.direction == 2){
-                counter--
-                timerView.text = "${getString(R.string.timer_value)} $counter secs"
-            }
-            if (game?.direction == 3){
-                counter--
-                timerView.text = "${getString(R.string.timer_value)} $counter secs"
-            }
-            if (game?.direction == 4){
-                counter--
-                timerView.text = "${getString(R.string.timer_value)} $counter secs"
-            }
+    private val timerTick = Runnable {
+        //This method runs in the same thread as the UI.
+        // so we can draw
+        if (running) {
+            counter++
+            //update the counter - notice this is NOT seconds in this example
+            //you need TWO counters - one for the timer count down that will
+            // run every second and one for the pacman which need to run
+            //faster than every second
+            timerView.text = getString(R.string.timer_value,counter)
+
+
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -109,5 +113,18 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+    override fun onClick(v: View) {
+        if (v.id == R.id.startButton) {
+            running = true
+        } else if (v.id == R.id.stopButton) {
+            running = false
+        } else if (v.id == R.id.resetButton) {
+            counter = 0
+            game?.newGame() //you should call the newGame method instead of this
+            running = false
+            timerView.text = getString(R.string.timer_value,counter)
+
+        }
     }
 }
