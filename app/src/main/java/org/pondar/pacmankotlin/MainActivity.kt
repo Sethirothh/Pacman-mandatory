@@ -54,13 +54,21 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         // movement buttons
         moveRight.setOnClickListener {
-            game?.movePacmanRight(10) }
+            direction = 1
+//            game?.movePacmanRight(10)
+        }
         moveLeft.setOnClickListener {
-            game?.movePacmanLeft(10) }
+            direction = 4
+//            game?.movePacmanLeft(10)
+        }
         moveDown.setOnClickListener {
-            game?.movePacmanDown(10) }
+            direction = 2
+//            game?.movePacmanDown(10)
+        }
         moveUp.setOnClickListener {
-            game?.movePacmanUp(10) }
+            direction = 3
+//            game?.movePacmanUp(10)
+        }
 
 
     }
