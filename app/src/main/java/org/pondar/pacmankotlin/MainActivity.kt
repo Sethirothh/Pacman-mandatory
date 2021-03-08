@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var game: Game? = null
 
     private var myTimer: Timer = Timer()
-//    private var gameTimer: Timer = Timer()
+    private var gameTimer: Timer = Timer()
     private var counter : Int = 60
     private var running = false
     private var direction = 1
@@ -51,7 +51,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }
         }, 0, 17) //0 indicates we start now, 200
         //is the number of miliseconds between each call
-
+        //We will call the timer 5 times each second
+        gameTimer.schedule(object : TimerTask() {
+            override fun run() {
+                gameTimerMethod()
+            }
+        }, 0, 1000) //0 indicates we start now, 200
+        //is the number of miliseconds between each call
         // movement buttons
         moveRight.setOnClickListener {
             direction = 1
@@ -78,7 +84,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
-
+    private fun gameTimerMethod() {
+        this.runOnUiThread(gameTimerTick)
+    }
     private fun timerMethod() {
         //This method is called directly by the timer
         //and runs in the same thread as the timer.
@@ -94,7 +102,16 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         this.runOnUiThread(timerTick)
 
     }
-
+    private val gameTimerTick = Runnable {
+        if (running) {
+            counter++
+            //update the counter - notice this is NOT seconds in this example
+            //you need TWO counters - one for the timer count down that will
+            // run every second and one for the pacman which need to run
+            //faster than every second
+            timerView.text = getString(R.string.timer_value,counter)
+        }
+    }
     private val timerTick = Runnable {
         //This method runs in the same thread as the UI.
         // so we can draw
@@ -104,8 +121,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             //you need TWO counters - one for the timer count down that will
             // run every second and one for the pacman which need to run
             //faster than every second
-            timerView.text = getString(R.string.timer_value,counter)
-
 
             if (direction==1)
             {
