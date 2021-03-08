@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 timerView.text = getString(R.string.timer_value,counter)
             } else if (counter == 0) {
                 game?.running = false
-                gameOver();
+                gameOver("You Lose")
             }
         } else {
             counter = 60
@@ -140,9 +140,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         }
     }
-    private fun gameOver() {
+    private fun gameOver(string: String) {
         if (game?.running == false){
-            val toast = Toast.makeText(this, "Fucking Taber", Toast.LENGTH_SHORT)
+            val toast = Toast.makeText(this, string, Toast.LENGTH_SHORT)
             toast.setGravity(Gravity.CENTER, 0, 0)
             toast.show()
         }

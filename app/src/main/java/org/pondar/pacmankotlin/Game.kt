@@ -3,6 +3,7 @@ package org.pondar.pacmankotlin
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import android.widget.TextView
 import java.util.*
 
@@ -145,7 +146,64 @@ class Game(private var context: Context,view: TextView) {
     //so you need to go through the arraylist of goldcoins and
     //check each of them for a collision with the pacman
     fun doCollisionCheck() {
+        //Pacman
+        val h1 = pacBitmap.height
+        val w1 = pacBitmap.width
+        val x1 = pacx
+        val y1 = pacy
+        for (coin in coins){
+            //Coin
+            val h2 = goldBitmap.height
+            val w2 = goldBitmap.width
+            val x2 = coin.coinx
+            val y2 = coin.coiny
+            //Coin collision
+            var coinCollisionX = false
+            var coinCollisionY = false
+            //Check which position is lesser on x
+            if (x1 < x2){
+                //check if there is gap on x axis
+                if (x1 + w1 > x2){
+                    coinCollisionX = true
+                }
+            }
+            else{
+                //check if there is a gap on x axis
+                if (x2 + w2 > x1){
+                    coinCollisionX = true
+                }
+            }
 
+            //check which position is lesser on y
+            if (y1 < y2){
+                //check if there is a gab on y axis
+                if (y1 + h1 > y2){
+                    coinCollisionY = true
+                }
+            }
+            else{
+                //check if there is a gab on y axis
+                if (y2 + h2 > y1){
+                    coinCollisionY = true
+                }
+            }
+            if (coinCollisionX && coinCollisionY){
+                if (coin.taken == true){
+                    continue
+                }
+                else{
+                    //update score and check if game is won
+                    coin.taken = true
+                    points += 5
+                    pointsView.text = "${context.resources.getString(R.string.points)} $points"
+                    if (isGameWon()){
+                        running = false
+                        direction = 0
+                        Log.d("win", "Level Completed")
+                    }
+                }
+            }
+        }
     }
 
 
