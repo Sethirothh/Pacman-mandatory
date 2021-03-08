@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         //We call the method that will work with the UI
         //through the runOnUiThread method.
-        this.runOnUiThread(timerTick)
+        this.runOnUiThread(gamerTick)
 
     }
     private val gameTimerTick = Runnable {
@@ -114,10 +114,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             } else if (counter == 0) {
                 game?.running = false
                 gameOver();
+                counter = 60
             }
         }
     }
-    private val timerTick = Runnable {
+    private val gamerTick = Runnable {
         //This method runs in the same thread as the UI.
         // so we can draw
         if (running) {
@@ -131,22 +132,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 3 -> game?.movePacmanUp(5)
                 4 -> game?.movePacmanLeft(5)
             }
-//            if (direction==1)
-//            {
-//                game?.movePacmanRight(5)
-//            }
-//            else if (direction==2)
-//            {
-//                game?.movePacmanDown(5)
-//            }
-//            else if (direction==3)
-//            {
-//                game?.movePacmanUp(5)
-//            }
-//            else if (direction==4)
-//            {
-//                game?.movePacmanLeft(5)
-//            }
             if (counter <= 0){
                 game?.direction = 0
                 game?.running = false
