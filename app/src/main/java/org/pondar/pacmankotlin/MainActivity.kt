@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 //    private var gameTimer: Timer = Timer()
     private var counter : Int = 60
     private var running = false
+    private var direction = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,19 +99,19 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             timerView.text = getString(R.string.timer_value,counter)
 
 
-            if (game?.direction==1)
-            {
-                game?.movePacmanUp(5)
-            }
-            else if (game?.direction==2)
-            {
-                game?.movePacmanDown(5)
-            }
-            else if (game?.direction==3)
+            if (direction==1)
             {
                 game?.movePacmanRight(5)
             }
-            else if (game?.direction==4)
+            else if (direction==2)
+            {
+                game?.movePacmanDown(5)
+            }
+            else if (direction==3)
+            {
+                game?.movePacmanUp(5)
+            }
+            else if (direction==4)
             {
                 game?.movePacmanLeft(5)
             }
@@ -119,12 +120,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 game?.running = false
             }
             if(game?.isGameWon() == true){
-                val toast = Toast.makeText(this, "Level Completed!", Toast.LENGTH_SHORT)
+                val toast = Toast.makeText(this, "Niveau Gennemført!", Toast.LENGTH_SHORT)
                 toast.setGravity(Gravity.CENTER, 0, 0)
                 toast.show()
             }
             if (game?.running == false){
-                val toast = Toast.makeText(this, "Game Over", Toast.LENGTH_SHORT)
+                val toast = Toast.makeText(this, "Fucking Taber", Toast.LENGTH_SHORT)
                 toast.setGravity(Gravity.CENTER, 0, 0)
                 toast.show()
             }
