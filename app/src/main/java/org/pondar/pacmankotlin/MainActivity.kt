@@ -7,11 +7,17 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     //reference to the game class.
     private var game: Game? = null
+
+    private var myTimer: Timer = Timer()
+    private var gameTimer: Timer = Timer()
+    private var counter : Int = 60
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
