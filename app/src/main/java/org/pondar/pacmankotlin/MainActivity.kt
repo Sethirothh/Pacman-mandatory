@@ -151,17 +151,19 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 game?.direction = 0
                 game?.running = false
             }
-            if(game?.isGameWon() == true){
-                val toast = Toast.makeText(this, "Niveau Gennemført!", Toast.LENGTH_SHORT)
-                toast.setGravity(Gravity.CENTER, 0, 0)
-                toast.show()
-            }
 
         }
     }
     private fun gameOver() {
         if (game?.running == false){
             val toast = Toast.makeText(this, "Fucking Taber", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            toast.show()
+        }
+    }
+    private fun gameWon() {
+        if(game?.isGameWon() == true){
+            val toast = Toast.makeText(this, "Niveau Gennemført!", Toast.LENGTH_SHORT)
             toast.setGravity(Gravity.CENTER, 0, 0)
             toast.show()
         }
