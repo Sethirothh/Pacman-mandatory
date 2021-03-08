@@ -1,13 +1,15 @@
 <resources>
-    <string name="app_name">PacmanKotlin</string>
-    <string name="points">Points:</string>
-    <string name="action_settings">Settings</string>
+        <!-- UI -->
+    <string name="app_name">Pacman</string>
+    <string name="points">Point:</string>
+    <string name="action_settings">Indstillinger</string>
     <string name="pause">Pause</string>
-    <string name="timer_value">Timer-værdi:</string>
-    <string name="timer">Timer</string>
-    <string name="newgame">New Game</string>
-    <string name="move_left">Left</string>
-    <string name="move_right">Move Right</string>
-    <string name="move_up">Up</string>
-    <string name="move_down">Down</string>
+    <string name="timer_value">Tids-værdi:</string>
+    <string name="timer">Tid</string>
+    <string name="newgame">Nyt Spil</string>
+        <!-- Controls -->
+    <string name="move_left">Venstre</string>
+    <string name="move_right">Højre</string>
+    <string name="move_up">Op</string>
+    <string name="move_down">Ned</string>
 </resources>
