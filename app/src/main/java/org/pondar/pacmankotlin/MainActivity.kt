@@ -150,7 +150,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
     }
 
-    fun gameIsOver(gameString: CharSequence) {
+    private fun gameIsOver(gameString: CharSequence) {
         if (running == false){
             val toast = Toast.makeText(this, gameString, Toast.LENGTH_LONG)
             toast.setGravity(Gravity.CENTER, 0, 0)
