@@ -4,7 +4,9 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
+import android.view.Gravity
 import android.widget.TextView
+import android.widget.Toast
 import java.util.*
 
 
@@ -93,14 +95,6 @@ class Game(private var context: Context,view: TextView) {
     }
 
 
-    fun isGameWon(): Boolean{
-        for (coin in coins){
-            if (!coin.taken){
-                return false
-            }
-        }
-        return true
-    }
 
     fun setSize(h: Int, w: Int) {
         this.h = h
@@ -206,5 +200,13 @@ class Game(private var context: Context,view: TextView) {
         }
     }
 
+    fun isGameWon(): Boolean{
+        for (coin in coins){
+            if (!coin.taken){
+                return false
+            }
+        }
+        return true
+    }
 
 }

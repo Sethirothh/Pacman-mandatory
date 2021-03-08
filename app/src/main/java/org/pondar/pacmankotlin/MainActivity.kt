@@ -111,9 +111,17 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             if (counter > 0) {
                 counter--
                 timerView.text = getString(R.string.timer_value,counter)
+
+                if(game?.isGameWon() == true){
+                    val toast = Toast.makeText(this, "Niveau Gennemført!", Toast.LENGTH_SHORT)
+                    toast.setGravity(Gravity.CENTER, 0, 0)
+                    toast.show()
+                }
+                
             } else if (counter == 0) {
                 game?.running = false
-                gameOver("You Lose")
+                gameIsOver("You Lose")
+
             }
         } else {
             counter = 60
@@ -140,16 +148,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         }
     }
-    private fun gameOver(string: String) {
-        if (game?.running == false){
-            val toast = Toast.makeText(this, string, Toast.LENGTH_SHORT)
-            toast.setGravity(Gravity.CENTER, 0, 0)
-            toast.show()
-        }
-    }
-    private fun gameWon() {
-        if(game?.isGameWon() == true){
-            val toast = Toast.makeText(this, "Niveau Gennemført!", Toast.LENGTH_SHORT)
+
+    fun gameIsOver(gameString: CharSequence) {
+        if (running == false){
+            val toast = Toast.makeText(this, gameString, Toast.LENGTH_LONG)
             toast.setGravity(Gravity.CENTER, 0, 0)
             toast.show()
         }
