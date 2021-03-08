@@ -67,7 +67,7 @@ class Game(private var context: Context,view: TextView) {
         for (i in 0..4){
             var coinxx = Random().nextInt(950)
             var coinyy = Random().nextInt(1000)
-            var coin = GoldCoin(coinxx, coinyy)
+            var coin = GoldCoin(coinxx, coinyy, false)
             coins.add(coin)
         }
         coinsInitialized = true

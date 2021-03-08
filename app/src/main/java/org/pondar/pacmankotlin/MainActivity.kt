@@ -115,6 +115,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 game?.running = false
                 gameOver();
             }
+        } else {
+            counter = 60
         }
     }
     private val gamerTick = Runnable {
