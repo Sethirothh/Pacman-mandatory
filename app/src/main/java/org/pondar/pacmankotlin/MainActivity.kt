@@ -104,12 +104,17 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
     private val gameTimerTick = Runnable {
         if (running) {
-            counter--
             //update the counter - notice this is NOT seconds in this example
             //you need TWO counters - one for the timer count down that will
             // run every second and one for the pacman which need to run
             //faster than every second
-            timerView.text = getString(R.string.timer_value,counter)
+            if (counter > 0) {
+                counter--
+                timerView.text = getString(R.string.timer_value,counter)
+            } else if (counter == 0) {
+                game?.running = false
+                gameOver();
+            }
         }
     }
     private val timerTick = Runnable {
@@ -120,23 +125,28 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             //you need TWO counters - one for the timer count down that will
             // run every second and one for the pacman which need to run
             //faster than every second
-
-            if (direction==1)
-            {
-                game?.movePacmanRight(5)
+            when(direction) {
+                1 -> game?.movePacmanRight(5)
+                2 -> game?.movePacmanDown(5)
+                3 -> game?.movePacmanUp(5)
+                4 -> game?.movePacmanLeft(5)
             }
-            else if (direction==2)
-            {
-                game?.movePacmanDown(5)
-            }
-            else if (direction==3)
-            {
-                game?.movePacmanUp(5)
-            }
-            else if (direction==4)
-            {
-                game?.movePacmanLeft(5)
-            }
+//            if (direction==1)
+//            {
+//                game?.movePacmanRight(5)
+//            }
+//            else if (direction==2)
+//            {
+//                game?.movePacmanDown(5)
+//            }
+//            else if (direction==3)
+//            {
+//                game?.movePacmanUp(5)
+//            }
+//            else if (direction==4)
+//            {
+//                game?.movePacmanLeft(5)
+//            }
             if (counter <= 0){
                 game?.direction = 0
                 game?.running = false
@@ -146,11 +156,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 toast.setGravity(Gravity.CENTER, 0, 0)
                 toast.show()
             }
-            if (game?.running == false){
-                val toast = Toast.makeText(this, "Fucking Taber", Toast.LENGTH_SHORT)
-                toast.setGravity(Gravity.CENTER, 0, 0)
-                toast.show()
-            }
+
+        }
+    }
+    private fun gameOver() {
+        if (game?.running == false){
+            val toast = Toast.makeText(this, "Fucking Taber", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            toast.show()
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -169,6 +182,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         return super.onOptionsItemSelected(item)
     }
     override fun onClick(v: View) {
+        game?.initializeGoldcoins()
         if (v.id == R.id.startButton) {
             running = true
         } else if (v.id == R.id.stopButton) {

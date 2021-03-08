@@ -64,10 +64,9 @@ class Game(private var context: Context,view: TextView) {
     {
         //DO Stuff to initialize the array list with some coins.
         for (i in 0..4){
-            val coin = GoldCoin(0, 0)
-            coin.coinx = Random().nextInt(950)
-            coin.coiny = Random().nextInt(1000)
-            coins.add(coin)
+            var coinx = Random().nextInt(950)
+            var coiny = Random().nextInt(1000)
+            var coins = GoldCoin(coinx, coiny)
         }
         coinsInitialized = true
     }
