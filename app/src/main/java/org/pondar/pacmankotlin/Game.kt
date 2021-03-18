@@ -33,7 +33,7 @@ class Game(private var context: Context,view: TextView) {
 
         //did we initialize the coins?
         var coinsInitialized = false
-var ghostsInitialized = false
+        var ghostsInitialized = false
 
         //the list of goldcoins - initially empty
         var coins = ArrayList<GoldCoin>()
@@ -80,7 +80,7 @@ var ghostsInitialized = false
     {
         var enemyx = Random().nextInt(1000)
         var enemyy = Random().nextInt(950)
-        val ghost = Enemy(true, enemyx , enemyy )
+        var ghost = Enemy(true, enemyx , enemyy )
         ghosts.add(ghost)
         ghostsInitialized = true
     }
@@ -229,11 +229,12 @@ var ghostsInitialized = false
                 }
             }
             if (ghostCollisionX && ghostCollisionY){
-                if (isDead()){
-                    running = false
-                    direction = 0
-                    Log.d("lost", "Game Over")
-                }
+                    if(ghost.alive) {
+                        ghost.alive = false
+                        running = false
+                        direction = 0
+                        Log.d("lost", "Game Over")
+                    }
             }
         }
 
@@ -303,9 +304,9 @@ var ghostsInitialized = false
         }
         return true
     }
-    fun isDead(): Boolean{
+    fun isGameLost(): Boolean{
         for (ghost in ghosts){
-            if (!ghost.alive){
+            if (ghost.alive){
                 return false
             }
         }

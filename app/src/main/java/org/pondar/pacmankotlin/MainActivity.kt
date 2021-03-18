@@ -119,6 +119,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                     toast.show()
 
                 }
+                if(game?.isGameLost() == true){
+                    running = false
+                    val toast = Toast.makeText(this, "Du forgiftet, så du taber!", Toast.LENGTH_SHORT)
+                    //                    toast.setGravity(Gravity.CENTER, 0, 0)
+                    toast.show()
+
+                }
 
             } else if (game?.running == false) {
 running = false
@@ -141,14 +148,15 @@ running = false
             //faster than every second
             when(direction) {
                 1 -> game?.movePacmanRight(8)
-                1 -> game?.moveGhostUp(5)
                 2 -> game?.movePacmanDown(8)
-                2 -> game?.moveGhostLeft(5)
                 3 -> game?.movePacmanUp(8)
-                3 -> game?.moveGhostRight(5)
                 4 -> game?.movePacmanLeft(8)
+            }
+            when(direction) {
+                1 -> game?.moveGhostUp(5)
+                2 -> game?.moveGhostLeft(5)
+                3 -> game?.moveGhostRight(5)
                 4 -> game?.moveGhostDown(5)
-
             }
             if (counter <= 0){
                 game?.direction = 0
