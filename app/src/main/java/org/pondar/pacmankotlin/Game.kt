@@ -200,6 +200,7 @@ class Game(private var context: Context,view: TextView) {
         }
     }
 
+
     fun isGameWon(): Boolean{
         for (coin in coins){
             if (!coin.taken){

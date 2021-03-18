@@ -113,16 +113,18 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 timerView.text = getString(R.string.timer_value,counter)
 
                 if(game?.isGameWon() == true){
+                    running = false
                     val toast = Toast.makeText(this, "Niveau Gennemført!", Toast.LENGTH_SHORT)
                     //                    toast.setGravity(Gravity.CENTER, 0, 0)
                     toast.show()
-                    game?.running = false
+
                 }
 
-            } else if (counter == 0) {
-                game?.running = false
-                running = false
-                gameIsOver("You Lose")
+            } else if (game?.running == false) {
+running = false
+                val toast = Toast.makeText(this, "Game Over", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER, 0, 0)
+                toast.show()
 
             }
         } else {
