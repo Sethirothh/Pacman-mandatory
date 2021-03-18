@@ -67,10 +67,8 @@ class GameView : View {
 
         //looping through the list of enemies and draw them.
         for (ghost in game?.ghosts!!){
-            if (ghost.alive){
                 canvas.drawBitmap(game!!.ghostBitmap, ghost.enemyx.toFloat(),
                         ghost.enemyy.toFloat(), paint)
-            }
         }
         //TODO loop through the list of goldcoins and draw them here
 

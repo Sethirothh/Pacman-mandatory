@@ -196,11 +196,37 @@ running = false
         } else if (v.id == R.id.stopButton) {
             running = false
         } else if (v.id == R.id.resetButton) {
-            counter = 0
-            game?.newGame() //you should call the newGame method instead of this
-            running = false
-            timerView.text = getString(R.string.timer_value,counter)
+            if (game?.isGameWon() == true) {
+                game?.initializeEnemies()
+                //clear coin array
+                game?.coins?.clear()
+                //reset pacman
+                game?.pacx = 450
+                game?.pacy = 1000
+                //spawn new coins
+                game?.initializeGoldcoins()
+                //reset direction / stop movement
+                game?.direction = 0
+                //set running to true
+                game?.running = true
+                //position each ghost a random place
+                for (ghost in game?.ghosts!!){
+                    ghost.enemyx = Random().nextInt(900)
+                    ghost.enemyy = Random().nextInt(400)
+                }
+                //add 30 seconds
+                counter += 30
+                timerView.text = getString(R.string.timer_value,counter)
+                //redraw screen
+                gameView?.invalidate()
+            }
+            else {
+                counter = 0
+                game?.newGame() //you should call the newGame method instead of this
+                running = false
+                timerView.text = getString(R.string.timer_value,counter)
 
+            }
         }
     }
 }
