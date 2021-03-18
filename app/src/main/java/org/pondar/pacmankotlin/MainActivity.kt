@@ -140,10 +140,15 @@ running = false
             // run every second and one for the pacman which need to run
             //faster than every second
             when(direction) {
-                1 -> game?.movePacmanRight(5)
-                2 -> game?.movePacmanDown(5)
-                3 -> game?.movePacmanUp(5)
-                4 -> game?.movePacmanLeft(5)
+                1 -> game?.movePacmanRight(8)
+                1 -> game?.moveGhostUp(5)
+                2 -> game?.movePacmanDown(8)
+                2 -> game?.moveGhostLeft(5)
+                3 -> game?.movePacmanUp(8)
+                3 -> game?.moveGhostRight(5)
+                4 -> game?.movePacmanLeft(8)
+                4 -> game?.moveGhostDown(5)
+
             }
             if (counter <= 0){
                 game?.direction = 0
