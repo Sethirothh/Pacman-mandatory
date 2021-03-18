@@ -43,7 +43,7 @@ class GameView : View {
 
         //are the coins initiazlied?
         //if not initizlise them
-        if (!(game!!.coinsInitialized))
+         if (!(game!!.coinsInitialized))
             game?.initializeGoldcoins()
 
 

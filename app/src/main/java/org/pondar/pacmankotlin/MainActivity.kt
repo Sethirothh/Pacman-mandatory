@@ -121,6 +121,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             } else if (counter == 0) {
                 game?.running = false
+                running = false
                 gameIsOver("You Lose")
 
             }
@@ -151,6 +152,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun gameIsOver(gameString: CharSequence) {
+        running = false
         if (running == false){
             val toast = Toast.makeText(this, gameString, Toast.LENGTH_LONG)
             toast.setGravity(Gravity.CENTER, 0, 0)
@@ -173,7 +175,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         return super.onOptionsItemSelected(item)
     }
     override fun onClick(v: View) {
-        game?.initializeGoldcoins()
+        //game?.initializeGoldcoins()
         if (v.id == R.id.startButton) {
             running = true
         } else if (v.id == R.id.stopButton) {

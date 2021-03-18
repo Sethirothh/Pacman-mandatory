@@ -190,10 +190,10 @@ class Game(private var context: Context,view: TextView) {
                     coin.taken = true
                     points += 5
                     pointsView.text = "${context.resources.getString(R.string.points)} $points"
-                    if (isGameWon()){
+                    if (points == 25){
                         running = false
                         direction = 0
-                        Log.d("win", "Level Completed")
+                        Log.d("win", "Du vandt!")
                     }
                 }
             }
@@ -208,5 +208,12 @@ class Game(private var context: Context,view: TextView) {
         }
         return true
     }
-
+    fun isDead(): Boolean{
+        for (ghost in ghosts){
+            if (!ghost.alive){
+                return false
+            }
+        }
+        return true
+    }
 }
