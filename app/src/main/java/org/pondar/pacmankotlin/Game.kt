@@ -89,18 +89,23 @@ class Game(private var context: Context,view: TextView) {
 
     fun newGame() {
         pacx = 50
-        coins.clear()
-        ghosts.clear()
-        counter = 60
         pacy = 400 //just some starting coordinates - you can change this.
+        // Set counter to 60
+        counter = 60
+        // Clear coins and initialize them
         coins.clear()
         initializeGoldcoins()
+        // Clear enemies and initialize them
+        ghosts.clear()
         initializeEnemies()
+
         //reset the points
         points = 0
         pointsView.text = "${context.resources.getString(R.string.points)} $points"
 
         gameView?.invalidate() //redraw screen
+
+        // Set direction to 0 and run the game
         direction = 0
         running = true
     }

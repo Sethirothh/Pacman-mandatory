@@ -139,13 +139,7 @@ running = false
         }
     }
     private val gamerTick = Runnable {
-        //This method runs in the same thread as the UI.
-        // so we can draw
         if (running) {
-            //update the counter - notice this is NOT seconds in this example
-            //you need TWO counters - one for the timer count down that will
-            // run every second and one for the pacman which need to run
-            //faster than every second
             when(direction) {
                 1 -> game?.movePacmanRight(8)
                 2 -> game?.movePacmanDown(8)
